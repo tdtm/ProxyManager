@@ -61,6 +61,35 @@ class ParameterGeneratorTest extends PHPUnit_Framework_TestCase
         $this->assertSame('callable $foo', $generator->generate());
     }
 
+    public function testGeneratesMethodWithVariadicParameter()
+    {
+        if (PHP_VERSION_ID < 50400) {
+            $this->markTestSkipped('`variadic` parameters are only supported in PHP >=5.4.0');
+        }
+
+        $generator = new ParameterGenerator();
+
+        $generator->setVariadic(true);
+        $generator->setName('foo');
+
+        $this->assertSame('...$foo', $generator->generate());
+    }
+
+    public function testGeneratesMethodWithTypedVariadicParameter()
+    {
+        if (PHP_VERSION_ID < 50400) {
+            $this->markTestSkipped('`variadic` parameters are only supported in PHP >=5.4.0');
+        }
+
+        $generator = new ParameterGenerator();
+
+        $generator->setType('array');
+        $generator->setVariadic(true);
+        $generator->setName('foo');
+
+        $this->assertSame('array ...$foo', $generator->generate());
+    }
+
     public function testVisitMethodWithCallable()
     {
         if (PHP_VERSION_ID < 50400) {
