@@ -19,7 +19,6 @@
 namespace ProxyManagerTest\Factory\RemoteObject\Adapter;
 
 use PHPUnit_Framework_TestCase;
-use ProxyManager\Factory\RemoteObject\Adapter\Soap;
 
 /**
  * Tests for {@see \ProxyManager\Factory\RemoteObject\Adapter\Soap}
